@@ -3,10 +3,10 @@ import torch
 import torch.utils.data as data
 import torch.nn as nn
 import ast
-
+# Warning this imports a ton of stuff.
+from utils.config import *
 from utils.utils_general import Lang, Dataset, get_seq
 from utils.utils_temp import entityList, get_type_dict
-MEM_TOKEN_SIZE = 4
 
 def read_langs(file_name, global_entity, type_dict, max_line = None):
     # print(("Reading lines from {}".format(file_name)))
