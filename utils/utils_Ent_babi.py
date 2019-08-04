@@ -109,7 +109,7 @@ def generate_template(global_entity, sentence, type_dict):
     return sketch_response
 
 
-def prepare_data_seq(task, batch_size=100):
+def prepare_data_seq(task, batch_size=100, lang=None):
     data_path = 'data/dialog-bAbI-tasks/dialog-babi'
     file_train = '{}-task{}trn.txt'.format(data_path, task)
     file_dev = '{}-task{}dev.txt'.format(data_path, task)
@@ -124,8 +124,8 @@ def prepare_data_seq(task, batch_size=100):
     pair_test, test_max_len = read_langs(file_test, global_ent, type_dict)
     pair_testoov, testoov_max_len = read_langs(file_test_OOV, global_ent, type_dict)
     max_resp_len = max(train_max_len, dev_max_len, test_max_len, testoov_max_len) + 1
-    
-    lang = Lang()
+    if lang is None:
+        lang = Lang()
 
     train = get_seq(pair_train, lang, batch_size, True)
     dev   = get_seq(pair_dev, lang, 100, False)
