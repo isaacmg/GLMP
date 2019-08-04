@@ -4,7 +4,7 @@ import torch.utils.data as data
 import torch.nn as nn
 import ast
 
-from utils.utils_general import *
+from utils.utils_general import Lang, Dataset, get_seq
 from utils.utils_temp import entityList, get_type_dict
 
 
