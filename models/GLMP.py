@@ -88,7 +88,7 @@ class GLMP(nn.Module):
         else:
             return torch.Tensor(x)
 
-    def train_batch(self, data, clip, reset=0):
+    def train_batch(self, data, clip, leap_model, reset=0):
         if reset: self.reset()
         # Zero gradients of both optimizers
         self.encoder_optimizer.zero_grad()
@@ -111,6 +111,7 @@ class GLMP(nn.Module):
             data['ptr_index'].contiguous(), 
             data['response_lengths'])
         loss = loss_g + loss_v + loss_l
+        #TODO add update
         loss.backward()
 
         # Clip gradient norms
